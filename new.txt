@@ -1,0 +1,75 @@
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+#-------------------------------------------------------------
+# Запрещающие настройки:
+#-------------------------------------------------------------
+shopt	-u mailwarn
+unset	MAILCHECK         # Я не желаю, чтобы командная оболочка сообщала мне о прибытии почты
+
+# User specific aliases and functions
+export	LC_ALL=ru_RU.UTF-8
+export	PAGER='less -r -X'
+#export	EDITOR=ee
+export	BLOCKSIZE=K
+export	HISTCONTROL="ignoredups"
+export	HISTIGNORE="ls:ll:history:w"
+export	HISTTIMEFORMAT='%d.%m.%Y %H:%M:%S '
+
+shopt	-s histappend
+shopt	-s cdspell
+
+PROMPT_COMMAND='history -a'
+
+PATH=$PATH:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+
+if [ -f /etc/bash_completion.d/yum.bash ]; then
+. /etc/bash_completion.d/yum.bash
+fi
+
+alias	la='ls -lah --color=always'
+alias	ls='ls -h --color=always'
+alias	lf='ls -FAh --color=always'
+alias	ll='ls -lAh --color=always'
+alias	mc='mc -c'
+alias	l='/usr/bin/less -r -X'
+alias	tt='traceroute'
+alias	df='df -h'
+alias	sc='screen -a'
+alias	sr='screen -r'
+alias	su='su -m'
+alias   sudo='sudo -sE'
+alias	mkdir='mkdir -p'
+alias	di='du --si --max-depth=1'
+alias	sockstat='netstat -tulpn'
+
+alias gita='git add'
+
+divC='\[\e[1;37m\]'
+ttyC='\[\e[0;37m\]'
+unamC='\[\e[0;32m\]'
+hostC='\[\e[0;32m\]'
+pathC='\[\e[1;32m\]'
+
+SUColor='\[\e[1;31m\]'
+NoColor='\[\e[0m\]'
+
+case $(id -u) in
+	0)
+		sep1="$SUColor#$NoColor";
+	;;
+	*)
+		sep1="@"
+		;;
+esac
+
+sep2='['
+sep3=']'
+
+PS1="$unamC\u$divC$sep1$hostC\h$divC$sep2$ttyC\l$divC$sep3$pathC\w$divC>$NoColor"
+
+#echo -------------------------------------------------------------------------------
+#w
+#echo -------------------------------------------------------------------------------
