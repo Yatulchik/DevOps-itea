@@ -1,0 +1,7 @@
+#- name: Install Nginx and PHP-FPM
+- hosts: all
+  connection: local
+  remote_user: root
+
+  roles:
+    - php-fpm

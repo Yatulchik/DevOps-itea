@@ -1,0 +1,19 @@
+version: '1.0'
+services:
+nginx:
+    image: nginx:stable
+    ports:
+      - "3000:80"
+    volumes:
+      - ./www:/www
+      - ./nginx-conf:/etc/nginx/conf.d/
+    links:
+      - php
+    restart: unless-stopped
+
+php:
+    image: php:7-fpm
+    volumes:
+      - ./www:/www
+    restart: unless-stopped
+
