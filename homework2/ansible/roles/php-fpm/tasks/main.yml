@@ -1,0 +1,17 @@
+  - name: Install packages (nginx, php, php-fpm)
+    apt: name={{ item }} update_cache=yes state=latest
+    with_items:
+      - nginx
+      - php
+      - php-fpm
+
+  - name: Disable default server
+    command: unlink /etc/nginx/sites-enabled/default
+
+  - name: Copy nginx config to its location
+    template: src=test.conf dest=/etc/nginx/conf.d/
+
+  - name: Copy index.php to its location
+    template: src=index.php dest=/var/www/html/
+    notify: restart nginx
+
