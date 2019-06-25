@@ -1,0 +1,9 @@
+ - hosts: local
+   become: true
+   vars:
+     - config_server_name: "localhost"
+     - document_root: /var/www/html/
+
+   roles:
+     - php-fpm
+
