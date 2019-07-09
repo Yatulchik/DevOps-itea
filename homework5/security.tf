@@ -1,5 +1,5 @@
 resource "aws_security_group" "ssh-icmp" {
-  name   = "Allow SSH connections and ICMP replyes"
+  name   = "Allow SSH connections and ICMP replies"
   description = "Allow SSH inbound traffic and ICMP echo replyes"
 
   ingress {
