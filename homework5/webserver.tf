@@ -33,7 +33,7 @@ resource "aws_instance" "webserver" {
     inline = [
 	"sudo yum update -y",
 	"sudo amazon-linux-extras install nginx1.12 -y",
-#	"sudo yum install nginx",
+#	"sudo yum install nginx -y",
 	"sudo chmod +x /tmp/copy.sh",
 	"sudo /tmp/copy.sh",
 	"sudo service nginx restart",
