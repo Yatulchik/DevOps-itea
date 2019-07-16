@@ -12,7 +12,8 @@ data "template_file" "user_data" {
 }
 
 module "ecs-instances" {
-  source = "../../Dgadavin_repo/devops-course-itea/terraform/asg_module"
+#  source = "../../Dgadavin_repo/devops-course-itea/terraform/asg_module"
+  source = "git@github.com:Dgadavin/devops-course-itea.git//terraform/asg_module"
   environment = "dev"
   name = "${var.instance_name}"
   aws_ami = "${var.ami_id}"
