@@ -8,10 +8,7 @@ resource "aws_ecs_task_definition" "nginx" {
 [
   {
     "name": "nginx",
-    "links": [
-      "php-fpm"
-    ],
-    "image": "nginx",
+    "image": "nginx:latest",
     "essential": true,
     "portMappings": [
       {
@@ -21,13 +18,6 @@ resource "aws_ecs_task_definition" "nginx" {
     ],
     "memory": 128,
     "cpu": 10
-  },
-  {
-    "name": "php-fpm",
-    "image": "php-fpm",
-    "cpu": 10,
-    "memory": 128,
-    "essential": true
   }
 ]
 DEFINITION

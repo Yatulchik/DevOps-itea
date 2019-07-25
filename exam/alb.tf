@@ -1,6 +1,6 @@
 resource "aws_lb" "ecs-load-balancer" {
     name                = "ecs-load-balancer"
-    internal		= true
+    internal		= "false"
     load_balancer_type	= "application"
     security_groups     = ["${aws_security_group.ecs-cluster-sg.id}"]
     subnets             = ["${var.subnet_ids}"]
@@ -14,7 +14,7 @@ resource "aws_lb" "ecs-load-balancer" {
 
 resource "aws_lb_target_group" "ecs-target-group" {
     name                = "ecs-target-group"
-    port                = "3000"
+    port                = "80"
     protocol            = "HTTP"
     vpc_id              = "${var.VPCId}"
 
@@ -24,7 +24,7 @@ resource "aws_lb_target_group" "ecs-target-group" {
         healthy_threshold   = "5"
         unhealthy_threshold = "2"
         interval            = "7"
-        matcher             = "200,201"
+        matcher             = "200"
         path                = "/"
         port                = "traffic-port"
         protocol            = "HTTP"
@@ -38,7 +38,7 @@ resource "aws_lb_target_group" "ecs-target-group" {
 
 resource "aws_lb_listener" "ecs-lb-listener" {
     load_balancer_arn = "${aws_lb.ecs-load-balancer.arn}"
-    port              = 3000
+    port              = "80"
     protocol          = "HTTP"
 
     default_action {
@@ -46,3 +46,5 @@ resource "aws_lb_listener" "ecs-lb-listener" {
     type = "forward"
     }
 }
+
+
