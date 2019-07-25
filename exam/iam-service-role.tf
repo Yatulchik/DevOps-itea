@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs-service-role" {
-  name = "ecs-service-role-test"
+  name = "ecs-service-role"
 
   assume_role_policy = <<EOF
 {

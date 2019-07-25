@@ -3,7 +3,7 @@ data "aws_ecs_task_definition" "nginx" {
 }
 
 resource "aws_ecs_task_definition" "nginx" {
-    family                = "hello_world"
+    family                = "Itea-DevOps"
     container_definitions = <<DEFINITION
 [
   {
